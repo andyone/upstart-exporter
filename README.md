@@ -22,21 +22,21 @@ Configuration
 -------------
 
 The export process is configured through the only config, /etc/upstart-exporter.yaml, which is a simple YAML file of the following format:
-
+```yaml
     ---
     run_user: www # The user under which all installed through upstart-exporter background jobs are run
     run_group: www # The group of run_user
     helper_dir: /var/helper_dir # Auxilary directory for scripts incapsulating background jobs
     upstart_dir: /var/upstart_dir # Directory where upstart scripts should be placed
     prefix: 'myupstartjobs-' # Prefix added to app's log folders and upstart scripts
-
+```
 The config is not installed by default. If this config is absent, the default values are the following:
-
+```yaml
     helper_dir: /var/local/upstart_helpers/
     upstart_dir: /etc/init/
     run_user: service
     prefix: 'fb-'
-
+```
 To give a certain user (i.e. deployuser) ability to use this script, you can place the following lines into sudoers file:
 
     # Commands required for manipulating jobs
@@ -81,7 +81,7 @@ Procfile v.2
 
 Another format of Procfile scripts is YAML config. A configuration script may
 look like this:
-
+```yaml
     version: 2
     start_on_runlevel: "[2345]"
     stop_on_runlevel: "[06]"
@@ -106,7 +106,7 @@ look like this:
       my_multi_tail_cmd:
         command: /usr/bin/tail -F /var/log/messages
         count: 2
-
+```
 *start_on_runlevel* and *stop_on_runlevel* are two global options that can't be
 redefined. For more information on these options look into [upstart scripts documentation.]( http://upstart.ubuntu.com/cookbook/#start-on)
 
